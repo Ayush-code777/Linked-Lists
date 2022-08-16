@@ -1,0 +1,99 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node{
+    int data;
+    struct node * next;
+};
+
+void linkedlistTraversal(struct node* ptr){
+    while(ptr!=NULL){
+        
+        printf("Element : %d\n",ptr->data);
+        ptr=ptr->next;
+    }
+}
+
+struct node * insertAtBeginning(struct node * ptr, int element){
+    struct node* p=(struct node*)malloc(sizeof(struct node));
+    p->next=ptr;
+    p->data=element;
+    return p;
+    
+}
+
+struct node * insertInBetween(struct node * qtr, int element, int index){
+    struct node * ptr=(struct node*)malloc(sizeof(struct node));
+    int i=0;
+    while(i!=index-1){
+        qtr=qtr->next;
+        i++;
+
+    }
+    ptr->next=qtr->next;
+    qtr->next=ptr;
+    ptr->data=element;
+    return qtr;
+}
+
+struct node* insertAtEnd(struct node *ktr, int element){
+    struct node * ptr=(struct node*)malloc(sizeof(struct node));
+    struct node *p=ktr;
+    
+    while(p->next!=NULL){
+        p=p->next;
+
+    }
+    p->next=ptr;
+    ptr->next=NULL;
+    ptr->data=element;
+    return ktr;
+}
+
+
+struct node * insertafterNode(struct node* prevNode, int element){
+    struct node * ptr=(struct node *)malloc(sizeof(struct node));
+    ptr->data =element;
+    ptr->next=prevNode->next;
+    prevNode->next=ptr;
+    
+    return 0;
+
+}
+
+
+int main(int argc, char const *argv[])
+{
+    struct node * head;
+    struct node* second;
+    struct node * third;
+    struct node * fourth;
+    head=(struct node*)malloc(sizeof(struct node));
+    second=(struct node*)malloc(sizeof(struct node));
+    third=(struct node*)malloc(sizeof(struct node));
+    fourth=(struct node *)malloc(sizeof(struct node));
+
+    head->data=8;
+    head->next=second;
+
+    second->data=67;
+    second->next=third;
+
+    third->data=90;
+    third->next=fourth;
+
+    fourth->data=43;
+    fourth->next=NULL;
+    //linkedlistTraversal(head);
+    //head =insertAtBeginning(head,87);
+    //linkedlistTraversal(head);
+    //head =insertInBetween(head,22,3);
+    //linkedlistTraversal(head);
+    //head= insertAtEnd(head,420);
+    //printf("linked list after insertion at end\n");
+    //linkedlistTraversal(head);
+    printf("bkabka\n");
+    insertafterNode(third,89);
+    linkedlistTraversal(head);
+    return 0;
+}
